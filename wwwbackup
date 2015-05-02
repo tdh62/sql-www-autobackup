@@ -1,0 +1,16 @@
+#!/bin/bash
+#设置备份目录（Dropbox）
+Backup=/root/Dropbox/
+#本配置设置www自动备份
+#日志文件储存
+Log=/root/wwwbackup.log
+NewFile="$Backup"$(date +www20%y-%m-%d-%H-%M).tar.gz
+echo "-------------------------------------------" >> $Log
+echo 网页内容备份www$(date +"%y-%m-%d %H:%M:%S"网页内容备份www) >> $Log
+echo "--------------------------" >> $Log
+#开始备份
+tar zcvf $NewFile /var/www/html/* >> $Log 2>&1
+#压缩成为tar
+echo "[$NewFile]Backup Finished!" >> $Log 
+#开启dropbox
+/root/.dropbox-dist/dropboxd
